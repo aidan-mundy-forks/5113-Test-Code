@@ -3,7 +3,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
@@ -15,7 +14,7 @@ import frc.robot.subsystems.DriveBase;
  * documentation.
  */
 public class Robot extends TimedRobot {
-  public static Subsystem driveBase = new DriveBase();
+  public static DriveBase driveBase;
   public static OI oi;
 
   Command autonomousCommand;
@@ -27,7 +26,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    driveBase = new DriveBase();
     oi = new OI();
+
+    SmartDashboard.putData(driveBase);
+
     chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", chooser);

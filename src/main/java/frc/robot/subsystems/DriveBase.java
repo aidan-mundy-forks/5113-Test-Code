@@ -73,6 +73,10 @@ public class DriveBase extends Subsystem {
     mecDrive.drivePolar(magnitude, angle, rotation);
   }
 
+  public void stop() {
+    mecDrive.driveCartesian(0, 0, 0);
+  }
+
   public double getGyroAngle() {
     return (navx.getAngle());
   }
