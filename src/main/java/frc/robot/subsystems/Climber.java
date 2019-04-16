@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -13,6 +14,8 @@ public class Climber extends Subsystem {
   private DoubleSolenoid climb = new DoubleSolenoid(RobotMap.climbSolenoid0, RobotMap.climbSolenoid1);
 
   public Climber() {
+    elevatorMotor.setNeutralMode(NeutralMode.Brake);
+    elevatorMotor.setInverted(true);
     climb.set(Value.kReverse); // Initialized as kReverse because that is its starting configuration.
   }
 
