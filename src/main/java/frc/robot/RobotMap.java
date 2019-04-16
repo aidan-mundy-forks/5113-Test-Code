@@ -14,16 +14,26 @@ package frc.robot;
  */
 public class RobotMap {
   // Drive Motors
-  public static int frontLeftMotorCAN = 13;
-  public static int backLeftMotorCAN = 12;
-  public static int frontRightMotorCAN = 14;
-  public static int backRightMotorCAN = 15;
+  public static final int frontLeftMotorCAN = 13;
+  public static final int backLeftMotorCAN = 12;
+  public static final int frontRightMotorCAN = 14;
+  public static final int backRightMotorCAN = 15;
 
   // Drive Controls
-  public static int driveXStick = 0; // Forward/back
-  public static int driveYStick = 1; // Left/right strafe
-  public static int driveZStick = 4; // Left/right rotate
+  public static final int driveXStick = 0; // Forward/back
+  public static final int driveYStick = 1; // Left/right strafe
+  public static final int driveZStick = 4; // Left/right rotate
+
+  // Cargo Intake
+  public static final int intakeMotorCAN = 7;
+  public static final int pivotSolenoid0 = 6;
+  public static final int pivotSolenoid1 = 7;
+  public static final int cargoIntakeButton = 1;
+  public static final int cargoOutputButton = 2;
+  public static final int pivotToggleButton = 6;
+  public static final double intakeSpeed = 0.4;
+  public static final double outputSpeed = 0.6;
 
   // Miscellaneous Controls
-  public static int compressorButton = 5;
+  public static final int compressorButton = 7;
 }
