@@ -24,6 +24,10 @@ public class OI {
     final JoystickButton pivotToggleButton = new JoystickButton(secondaryGamepad, RobotMap.pivotToggleButton);
     final JoystickButton clampButton = new JoystickButton(secondaryGamepad, RobotMap.clampButton);
     final JoystickButton barButton = new JoystickButton(secondaryGamepad, RobotMap.barButton);
+    final JoystickButton elevatorUpButton = new JoystickButton(mainGamepad, RobotMap.elevatorUpBbutton);
+    final JoystickButton elevatorDownButton = new JoystickButton(mainGamepad, RobotMap.elevatorDownButton);
+    final JoystickButton climbToggleButton = new JoystickButton(mainGamepad, RobotMap.climbToggleButton);
+    
 
     compressorButton.whenPressed(new ToggleCompressor());
     cargoIntakeButton.whileHeld(new IntakeCargo());
@@ -31,6 +35,9 @@ public class OI {
     pivotToggleButton.whenPressed(new ToggleCargoPivot());
     clampButton.whenPressed(new ToggleHatchPanelClamp());
     barButton.whenPressed(new ToggleHatchPanelBar());
+    elevatorUpButton.whilePressed(new ElevatorUp());
+    elevatorDownButton.whilePressed(new ElevatorDown());
+    climbToggleButton.whenPressed(new ToggleClimbPistons());
   }
 
   public double getDriveX() {

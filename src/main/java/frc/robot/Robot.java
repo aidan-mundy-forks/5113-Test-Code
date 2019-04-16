@@ -42,7 +42,10 @@ public class Robot extends TimedRobot {
     oi = new OI();
 
     SmartDashboard.putData(driveBase);
+    SmartDashboard.putData(pneumaticsBase);
     SmartDashboard.putData(cargoIntake);
+    SmartDashboard.putData(hatchPanelIntake);
+    SmartDashboard.putData(climber);
 
     chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
