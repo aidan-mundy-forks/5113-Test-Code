@@ -1,9 +1,9 @@
-package frc.robot.subsystems;
+package frc.robot.examples;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * An example subsystem. You can replace me with your own Subsystem.
  */
 public class ExampleSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
