@@ -34,6 +34,12 @@ public class RobotMap {
   public static final double intakeSpeed = 0.4;
   public static final double outputSpeed = 0.6;
 
+  // Hatch Panel Intake
+  public static final int clampSolenoid = 4;
+  public static final int barSolenoid = 5;
+  public static final int clampButton = 3;
+  public static final int barButton = 4;
+
   // Miscellaneous Controls
   public static final int compressorButton = 7;
 }

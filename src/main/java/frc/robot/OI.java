@@ -6,6 +6,8 @@ import frc.robot.commands.IntakeCargo;
 import frc.robot.commands.OutputCargo;
 import frc.robot.commands.ToggleCargoPivot;
 import frc.robot.commands.ToggleCompressor;
+import frc.robot.commands.ToggleHatchPanelBar;
+import frc.robot.commands.ToggleHatchPanelClamp;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,11 +22,15 @@ public class OI {
     final JoystickButton cargoIntakeButton = new JoystickButton(secondaryGamepad, RobotMap.cargoIntakeButton);
     final JoystickButton cargoOutputButton = new JoystickButton(secondaryGamepad, RobotMap.cargoOutputButton);
     final JoystickButton pivotToggleButton = new JoystickButton(secondaryGamepad, RobotMap.pivotToggleButton);
+    final JoystickButton clampButton = new JoystickButton(secondaryGamepad, RobotMap.clampButton);
+    final JoystickButton barButton = new JoystickButton(secondaryGamepad, RobotMap.barButton);
 
     compressorButton.whenPressed(new ToggleCompressor());
     cargoIntakeButton.whileHeld(new IntakeCargo());
     cargoOutputButton.whileHeld(new OutputCargo());
     pivotToggleButton.whenPressed(new ToggleCargoPivot());
+    clampButton.whenPressed(new ToggleHatchPanelClamp());
+    barButton.whenPressed(new ToggleHatchPanelBar());
   }
 
   public double getDriveX() {
