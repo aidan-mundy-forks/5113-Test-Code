@@ -23,4 +23,7 @@ public class RobotMap {
   public static int driveXStick = 0; // Forward/back
   public static int driveYStick = 1; // Left/right strafe
   public static int driveZStick = 4; // Left/right rotate
+
+  // Miscellaneous Controls
+  public static int compressorButton = 5;
 }

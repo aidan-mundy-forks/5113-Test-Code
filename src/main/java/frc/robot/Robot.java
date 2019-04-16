@@ -5,8 +5,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
+import frc.robot.examples.ExampleCommand;
 import frc.robot.subsystems.DriveBase;
+import frc.robot.subsystems.PneumaticsBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -15,6 +16,7 @@ import frc.robot.subsystems.DriveBase;
  */
 public class Robot extends TimedRobot {
   public static DriveBase driveBase;
+  public static PneumaticsBase pneumaticsBase;
   public static OI oi;
 
   Command autonomousCommand;
@@ -27,6 +29,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     driveBase = new DriveBase();
+    pneumaticsBase = new PneumaticsBase();
     oi = new OI();
 
     SmartDashboard.putData(driveBase);
