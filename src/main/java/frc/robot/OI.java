@@ -2,9 +2,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.ElevatorDown;
+import frc.robot.commands.ElevatorUp;
 import frc.robot.commands.IntakeCargo;
 import frc.robot.commands.OutputCargo;
 import frc.robot.commands.ToggleCargoPivot;
+import frc.robot.commands.ToggleClimbPistons;
 import frc.robot.commands.ToggleCompressor;
 import frc.robot.commands.ToggleHatchPanelBar;
 import frc.robot.commands.ToggleHatchPanelClamp;
@@ -24,10 +27,9 @@ public class OI {
     final JoystickButton pivotToggleButton = new JoystickButton(secondaryGamepad, RobotMap.pivotToggleButton);
     final JoystickButton clampButton = new JoystickButton(secondaryGamepad, RobotMap.clampButton);
     final JoystickButton barButton = new JoystickButton(secondaryGamepad, RobotMap.barButton);
-    final JoystickButton elevatorUpButton = new JoystickButton(mainGamepad, RobotMap.elevatorUpBbutton);
+    final JoystickButton elevatorUpButton = new JoystickButton(mainGamepad, RobotMap.elevatorUpButton);
     final JoystickButton elevatorDownButton = new JoystickButton(mainGamepad, RobotMap.elevatorDownButton);
     final JoystickButton climbToggleButton = new JoystickButton(mainGamepad, RobotMap.climbToggleButton);
-    
 
     compressorButton.whenPressed(new ToggleCompressor());
     cargoIntakeButton.whileHeld(new IntakeCargo());
@@ -35,8 +37,8 @@ public class OI {
     pivotToggleButton.whenPressed(new ToggleCargoPivot());
     clampButton.whenPressed(new ToggleHatchPanelClamp());
     barButton.whenPressed(new ToggleHatchPanelBar());
-    elevatorUpButton.whilePressed(new ElevatorUp());
-    elevatorDownButton.whilePressed(new ElevatorDown());
+    elevatorUpButton.whileHeld(new ElevatorUp());
+    elevatorDownButton.whileHeld(new ElevatorDown());
     climbToggleButton.whenPressed(new ToggleClimbPistons());
   }
 
