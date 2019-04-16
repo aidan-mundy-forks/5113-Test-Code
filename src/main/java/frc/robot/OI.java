@@ -2,10 +2,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.ElevatorDown;
-import frc.robot.commands.ElevatorUp;
-import frc.robot.commands.IntakeCargo;
-import frc.robot.commands.OutputCargo;
 import frc.robot.commands.ToggleCargoPivot;
 import frc.robot.commands.ToggleClimbPistons;
 import frc.robot.commands.ToggleCompressor;
@@ -22,23 +18,15 @@ public class OI {
 
   public OI() {
     final JoystickButton compressorButton = new JoystickButton(mainGamepad, RobotMap.compressorButton);
-    final JoystickButton cargoIntakeButton = new JoystickButton(secondaryGamepad, RobotMap.cargoIntakeButton);
-    final JoystickButton cargoOutputButton = new JoystickButton(secondaryGamepad, RobotMap.cargoOutputButton);
     final JoystickButton pivotToggleButton = new JoystickButton(secondaryGamepad, RobotMap.pivotToggleButton);
     final JoystickButton clampButton = new JoystickButton(secondaryGamepad, RobotMap.clampButton);
     final JoystickButton barButton = new JoystickButton(secondaryGamepad, RobotMap.barButton);
-    final JoystickButton elevatorUpButton = new JoystickButton(mainGamepad, RobotMap.elevatorUpButton);
-    final JoystickButton elevatorDownButton = new JoystickButton(mainGamepad, RobotMap.elevatorDownButton);
     final JoystickButton climbToggleButton = new JoystickButton(mainGamepad, RobotMap.climbToggleButton);
 
     compressorButton.whenPressed(new ToggleCompressor());
-    cargoIntakeButton.whileHeld(new IntakeCargo());
-    cargoOutputButton.whileHeld(new OutputCargo());
     pivotToggleButton.whenPressed(new ToggleCargoPivot());
     clampButton.whenPressed(new ToggleHatchPanelClamp());
     barButton.whenPressed(new ToggleHatchPanelBar());
-    elevatorUpButton.whileHeld(new ElevatorUp());
-    elevatorDownButton.whileHeld(new ElevatorDown());
     climbToggleButton.whenPressed(new ToggleClimbPistons());
   }
 
@@ -52,5 +40,21 @@ public class OI {
 
   public double getDriveZ() {
     return mainGamepad.getRawAxis(RobotMap.driveZStick);
+  }
+
+  public boolean getCargoIntake() {
+    return secondaryGamepad.getRawButton(RobotMap.cargoIntakeButton);
+  }
+
+  public boolean getCargoOutput() {
+    return secondaryGamepad.getRawButton(RobotMap.cargoOutputButton);
+  }
+
+  public boolean getElevatorUp() {
+    return mainGamepad.getRawButton(RobotMap.elevatorUpButton);
+  }
+
+  public boolean getElevatorDown() {
+    return mainGamepad.getRawButton(RobotMap.elevatorDownButton);
   }
 }

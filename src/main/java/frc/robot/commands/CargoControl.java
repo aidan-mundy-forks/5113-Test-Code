@@ -4,15 +4,21 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
-public class IntakeCargo extends Command {
-  public IntakeCargo() {
+public class CargoControl extends Command {
+  public CargoControl() {
     requires(Robot.cargoIntake);
   }
 
-  // Called just before this Command runs the first time
+  // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void initialize() {
-    Robot.cargoIntake.intakeSpin(-RobotMap.intakeSpeed);
+  protected void execute() {
+    if (Robot.oi.getCargoIntake()) {
+      Robot.cargoIntake.intakeSpin(-RobotMap.intakeSpeed);
+    } else if (Robot.oi.getCargoOutput()) {
+      Robot.cargoIntake.intakeSpin(RobotMap.outputSpeed);
+    } else {
+      Robot.cargoIntake.intakeOff();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.CargoControl;
 
 public class CargoIntake extends Subsystem {
   private WPI_TalonSRX intakeMotor = new WPI_TalonSRX(RobotMap.intakeMotorCAN);
@@ -34,6 +35,6 @@ public class CargoIntake extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // This subsystem does not need a default command.
+    setDefaultCommand(new CargoControl());
   }
 }

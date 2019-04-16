@@ -4,10 +4,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class ToggleCompressor extends Command {
-  public ToggleCompressor() {
-    requires(Robot.pneumaticsBase);
-  }
-
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {

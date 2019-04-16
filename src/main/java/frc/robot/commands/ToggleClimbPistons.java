@@ -4,10 +4,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class ToggleClimbPistons extends Command {
-  public ToggleClimbPistons() {
-    requires(Robot.climber);
-  }
-
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
