@@ -1,25 +1,35 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
+import frc.robot.commands.ElevatorControl;
 
-/**
- * Add your docs here.
- */
 public class Climber extends Subsystem {
-  // TODO: Do this.
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+  private WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(RobotMap.elevatorMotorCAN);
+  private DoubleSolenoid climb = new DoubleSolenoid(RobotMap.climbSolenoid0, RobotMap.climbSolenoid1);
+
+  public Climber() {
+    pivot.set(Value.kReverse); // Initialized as kReverse because that is its starting configuration.
+  }
+
+  public void elevatorSpeed(double speed) {
+    elevatorMotor.set(speed);
+  }
+
+  public void elevatorOff() {
+    elevatorMotor.set(0);
+  }
+
+  public void toggleClimb() {
+    if (climb.get() == Value.kReverse) {
+      climb.set(Value.kForward);
+    } else {
+      climb.set(Value.kReverse);
+    }
+  }
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new ElevatorControl());
   }
 }

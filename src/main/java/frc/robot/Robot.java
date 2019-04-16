@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.examples.ExampleCommand;
 import frc.robot.subsystems.CargoIntake;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.HatchPanelIntake;
 import frc.robot.subsystems.PneumaticsBase;
@@ -21,6 +22,7 @@ public class Robot extends TimedRobot {
   public static PneumaticsBase pneumaticsBase;
   public static CargoIntake cargoIntake;
   public static HatchPanelIntake hatchPanelIntake;
+  public static Climber climber;
   public static OI oi;
 
   Command autonomousCommand;
@@ -36,6 +38,7 @@ public class Robot extends TimedRobot {
     pneumaticsBase = new PneumaticsBase();
     cargoIntake = new CargoIntake();
     hatchPanelIntake = new HatchPanelIntake();
+    climber = new Climber();
     oi = new OI();
 
     SmartDashboard.putData(driveBase);

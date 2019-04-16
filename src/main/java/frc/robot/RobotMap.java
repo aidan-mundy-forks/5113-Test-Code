@@ -40,6 +40,15 @@ public class RobotMap {
   public static final int clampButton = 3;
   public static final int barButton = 4;
 
+  // Climber
+  public static final int elevatorMotorCAN = 11;
+  public static final int climbSolenoid0 = 0;
+  public static final int climbSolenoid1 = 1;
+  public static final int elevatorUpButton = 0; // TODO: Do this
+  public static final int elevatorDownButton = 0; // TODO: Do this
+  public static final int climbToggleButton = 0; // TODO: Do this
+  public static final double elevatorSpeed = 1;
+
   // Miscellaneous Controls
   public static final int compressorButton = 7;
 }

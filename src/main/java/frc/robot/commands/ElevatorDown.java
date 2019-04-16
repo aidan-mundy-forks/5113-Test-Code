@@ -2,17 +2,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
-public class IntakeCargo extends Command {
-  public IntakeCargo() {
-    requires(Robot.cargoIntake);
+public class ElevatorDown extends Command {
+  public ElevatorDown() {
+    requires(Robot.climber);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.cargoIntake.intakeSpin(-RobotMap.intakeSpeed);
+    Robot.climber.elevatorSpeed(-RobotMap.elevatorSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -25,6 +24,6 @@ public class IntakeCargo extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.cargoIntake.intakeOff();
+    Robot.climber.elevatorOff();
   }
 }
