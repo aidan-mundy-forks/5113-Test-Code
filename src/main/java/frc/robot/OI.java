@@ -2,6 +2,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.POVButton;
+import frc.robot.commands.TestAuton;
 import frc.robot.commands.ToggleCargoPivot;
 import frc.robot.commands.ToggleClimbPistons;
 import frc.robot.commands.ToggleCompressor;
@@ -22,12 +24,14 @@ public class OI {
     final JoystickButton clampButton = new JoystickButton(secondaryGamepad, RobotMap.clampButton);
     final JoystickButton barButton = new JoystickButton(secondaryGamepad, RobotMap.barButton);
     final JoystickButton climbToggleButton = new JoystickButton(mainGamepad, RobotMap.climbToggleButton);
+    final POVButton autonButton = new POVButton(mainGamepad, 0);
 
     compressorButton.whenPressed(new ToggleCompressor());
     pivotToggleButton.whenPressed(new ToggleCargoPivot());
     clampButton.whenPressed(new ToggleHatchPanelClamp());
     barButton.whenPressed(new ToggleHatchPanelBar());
     climbToggleButton.whenPressed(new ToggleClimbPistons());
+    autonButton.whileHeld(new TestAuton());
   }
 
   public double getDriveX() {

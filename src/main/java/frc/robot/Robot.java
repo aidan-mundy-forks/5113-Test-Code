@@ -1,15 +1,16 @@
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.examples.ExampleCommand;
+import frc.robot.commands.SendToSmartDashboard;
 import frc.robot.subsystems.CargoIntake;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.HatchPanelIntake;
+import frc.robot.subsystems.Network;
 import frc.robot.subsystems.PneumaticsBase;
 
 /**
@@ -24,6 +25,9 @@ public class Robot extends TimedRobot {
   public static HatchPanelIntake hatchPanelIntake;
   public static Climber climber;
   public static OI oi;
+  public static Network network;
+
+  private SendToSmartDashboard sendToSmartDashboard;
 
   Command autonomousCommand;
   SendableChooser<Command> chooser = new SendableChooser<>();
@@ -40,16 +44,16 @@ public class Robot extends TimedRobot {
     hatchPanelIntake = new HatchPanelIntake();
     climber = new Climber();
     oi = new OI();
+    network = new Network();
 
-    SmartDashboard.putData(driveBase);
-    SmartDashboard.putData(pneumaticsBase);
-    SmartDashboard.putData(cargoIntake);
-    SmartDashboard.putData(hatchPanelIntake);
-    SmartDashboard.putData(climber);
+    sendToSmartDashboard = new SendToSmartDashboard();
+    sendToSmartDashboard.start();
 
-    chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", chooser);
+    /*
+     * chooser.setDefaultOption("Default Auto", new ExampleCommand()); //
+     * chooser.addOption("My Auto", new MyAutoCommand());
+     * SmartDashboard.putData("Auto mode", chooser);
+     */
   }
 
   /**
@@ -59,6 +63,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    if (!sendToSmartDashboard.isRunning()) {
+      sendToSmartDashboard.start();
+    }
   }
 
   /**
@@ -77,11 +84,9 @@ public class Robot extends TimedRobot {
 
   /**
    * This function is called once each time the robot enters Autonomous mode.
-   * 
    * This autonomous (along with the chooser code above) shows how to select
    * between different autonomous modes using the dashboard. The sendable chooser
    * code works with the Java SmartDashboard.
-   *
    * <p>
    * You can add additional auto modes by adding additional commands to the
    * chooser code above (like the commented example) or additional comparisons to

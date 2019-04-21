@@ -11,9 +11,6 @@ import frc.robot.RobotMap;
 import frc.robot.commands.TeleopDriveNormal;
 import edu.wpi.first.wpilibj.SPI;
 
-/**
- * TODO: Add getEncoder functions
- */
 public class DriveBase extends Subsystem {
   private WPI_TalonSRX frontLeftWheel = new WPI_TalonSRX(RobotMap.frontLeftMotorCAN);
   private WPI_TalonSRX backLeftWheel = new WPI_TalonSRX(RobotMap.backLeftMotorCAN);
@@ -61,28 +58,12 @@ public class DriveBase extends Subsystem {
     mecDrive.driveCartesian(yPower, xPower, rotation);
   }
 
-  public void driveCartesianFOD(double xPower, double yPower, double rotation) {
-    mecDrive.driveCartesian(xPower, yPower, rotation, navx.getAngle());
-  }
-
   public void driveCartesianBackward(double xPower, double yPower, double rotation) {
     mecDrive.driveCartesian((-1 * (xPower)), (-1 * (yPower)), rotation);
   }
 
-  public void drivePolar(double magnitude, double angle, double rotation) {
-    mecDrive.drivePolar(magnitude, angle, rotation);
-  }
-
   public void stop() {
     mecDrive.driveCartesian(0, 0, 0);
-  }
-
-  public double getGyroAngle() {
-    return (navx.getAngle());
-  }
-
-  public void resetGyro() {
-    navx.reset();
   }
 
   @Override
