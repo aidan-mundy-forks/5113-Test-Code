@@ -17,7 +17,8 @@ public class TestAuton extends Command {
       System.out.println(Robot.network.getErrorMessage());
     } else {
       Robot.driveBase.driveCartesian(autonPStrafeSpeed(), Robot.oi.getDriveY(), autonPRotateSpeed());
-      System.out.println("Trying to drive " + autonPRotateSpeed());
+      System.out.println("Trying to rotate " + autonPRotateSpeed());
+      System.out.println("Trying to strafe " + autonPStrafeSpeed());
     }
 
   }
@@ -40,13 +41,28 @@ public class TestAuton extends Command {
   }
 
   private double autonPStrafeSpeed() {
-    double threshold = .98;
+    double threshold = .9;
+    double target0Area;
+    double target1Area;
 
-    double ratioTarget1Bigger = Robot.network.getContourInfo(DataType.area, 0) / Robot.network.getContourInfo(DataType.area, 1);
-    double ratioTarget0Bigger = Robot.network.getContourInfo(DataType.area, 1) / Robot.network.getContourInfo(DataType.area, 0);
+    /*
+     * This is necessary because targets arent always located in a logical sort in the array
+     * and it was easier to to this than to actually follow heirarchy rules. ¯\_(ツ)_/¯
+     */
+    if (Robot.network.getContourInfo(DataType.x, 0) < Robot.network.getContourInfo(DataType.x, 1)) {
+      target0Area = Robot.network.getContourInfo(DataType.area, 0);
+      target1Area = Robot.network.getContourInfo(DataType.area, 1);
+    } else {
+      target0Area = Robot.network.getContourInfo(DataType.area, 1);
+      target1Area = Robot.network.getContourInfo(DataType.area, 0);
+    }
+
+    double ratioTarget1Bigger = target0Area / target1Area;
+    double ratioTarget0Bigger = target1Area / target0Area;
+
     if (ratioTarget0Bigger > threshold && ratioTarget1Bigger > threshold) {
       return 0;
-    } else if (Robot.network.getContourInfo(DataType.area, 0) < Robot.network.getContourInfo(DataType.area, 1)) {
+    } else if (target0Area < target1Area) {
       return -autonPStrafeSpeedMath(ratioTarget1Bigger);
     } else {
       return autonPStrafeSpeedMath(ratioTarget0Bigger);
@@ -56,11 +72,11 @@ public class TestAuton extends Command {
   private double autonPStrafeSpeedMath(double ratio) {
 
     double maxSpeed = .5;
-    double minSpeed = .25;
+    double minSpeed = .17;
 
     double speedDiff = maxSpeed - minSpeed;
 
-    return (((ratio - 0.75) / 0.75) * speedDiff) + minSpeed;
+    return Math.abs(((ratio - 0.35) / .65) * speedDiff) + minSpeed;
   }
 
   // Make this return true when this Command no longer needs to run execute()

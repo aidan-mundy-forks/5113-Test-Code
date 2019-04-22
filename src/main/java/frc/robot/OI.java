@@ -19,7 +19,7 @@ public class OI {
   private final Joystick secondaryGamepad = new Joystick(1);
 
   public OI() {
-    final JoystickButton compressorButton = new JoystickButton(mainGamepad, RobotMap.compressorButton);
+    final var compressorButton = new JoystickButton(mainGamepad, RobotMap.compressorButton);
     final JoystickButton pivotToggleButton = new JoystickButton(secondaryGamepad, RobotMap.pivotToggleButton);
     final JoystickButton clampButton = new JoystickButton(secondaryGamepad, RobotMap.clampButton);
     final JoystickButton barButton = new JoystickButton(secondaryGamepad, RobotMap.barButton);
