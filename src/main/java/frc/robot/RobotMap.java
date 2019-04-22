@@ -6,11 +6,9 @@ package frc.robot;
  * modifiable should be always placed here. Constants should also typically be
  * placed in RobotMap in most situations where they are important to know and/or
  * shared between multiple classes, such as encoder counts.
- * 
  * This provides flexibility changing wiring, makes checking the wiring easier,
  * makes changing settings quicker and easier,and significantly reduces the
  * number of magic numbers floating around.
- *
  * For example to map the left and right motors, you could define the following
  * variables to use with your drivetrain subsystem. public static int leftMotor
  * = 1; public static int rightMotor = 2;
@@ -53,5 +51,6 @@ public class RobotMap {
   public static final double elevatorSpeed = 1;
 
   // Miscellaneous Controls
+  public static final int autonForwardButton = 2;
   public static final int compressorButton = 7;
 }

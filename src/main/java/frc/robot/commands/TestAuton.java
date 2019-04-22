@@ -16,32 +16,15 @@ public class TestAuton extends Command {
       Robot.driveBase.stop();
       System.out.println(Robot.network.getErrorMessage());
     } else {
-      Robot.driveBase.driveCartesian(autonPStrafeSpeed(), Robot.oi.getDriveY(), autonPRotateSpeed());
+      Robot.driveBase.driveCartesian(autonPStrafeSpeed(), autonPDriveSpeed(), autonPRotateSpeed());
       System.out.println("Trying to rotate " + autonPRotateSpeed());
       System.out.println("Trying to strafe " + autonPStrafeSpeed());
     }
 
   }
 
-  private double autonPRotateSpeed() {
-    int threshold = 10;
-    double maxSpeed = .5;
-    double minSpeed = .12;
-
-    double speedDiff = maxSpeed - minSpeed;
-    double actualPosition = (Robot.network.getContourInfo(DataType.x, 0) + Robot.network.getContourInfo(DataType.x, 1)) / 2 - 480;
-    double scaledPosition = Math.pow((actualPosition) / 480, 2) * speedDiff;
-    if (Math.abs(actualPosition) < threshold) {
-      return 0;
-    } else if (actualPosition > 0) {
-      return scaledPosition + minSpeed;
-    } else {
-      return -scaledPosition - minSpeed;
-    }
-  }
-
   private double autonPStrafeSpeed() {
-    double threshold = .9;
+    double threshold = .92;
     double target0Area;
     double target1Area;
 
@@ -72,11 +55,38 @@ public class TestAuton extends Command {
   private double autonPStrafeSpeedMath(double ratio) {
 
     double maxSpeed = .5;
-    double minSpeed = .17;
+    double minSpeed = .18;
 
     double speedDiff = maxSpeed - minSpeed;
 
     return Math.abs(((ratio - 0.35) / .65) * speedDiff) + minSpeed;
+  }
+
+  private double autonPDriveSpeed() {
+    double driveSpeed = -.25;
+
+    if (Robot.oi.getAutonForwardButton()) {
+      return driveSpeed;
+    } else {
+      return 0;
+    }
+  }
+
+  private double autonPRotateSpeed() {
+    int threshold = 10;
+    double maxSpeed = .5;
+    double minSpeed = .12;
+
+    double speedDiff = maxSpeed - minSpeed;
+    double actualPosition = (Robot.network.getContourInfo(DataType.x, 0) + Robot.network.getContourInfo(DataType.x, 1)) / 2 - 480;
+    double scaledPosition = Math.pow((actualPosition) / 480, 2) * speedDiff;
+    if (Math.abs(actualPosition) < threshold) {
+      return 0;
+    } else if (actualPosition > 0) {
+      return scaledPosition + minSpeed;
+    } else {
+      return -scaledPosition - minSpeed;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

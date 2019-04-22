@@ -61,4 +61,8 @@ public class OI {
   public boolean getElevatorDown() {
     return mainGamepad.getRawButton(RobotMap.elevatorDownButton);
   }
+
+  public boolean getAutonForwardButton() {
+    return mainGamepad.getRawButton(RobotMap.autonForwardButton);
+  }
 }
