@@ -19,8 +19,6 @@ public class TestAuton extends Command {
       double strafeSpeed = autonPStrafeSpeed();
       double rotateSpeed = autonPRotateSpeed();
       Robot.driveBase.driveCartesian(strafeSpeed, autonPDriveSpeed(strafeSpeed, rotateSpeed), rotateSpeed);
-      System.out.println("Trying to rotate " + autonPRotateSpeed());
-      System.out.println("Trying to strafe " + autonPStrafeSpeed());
     }
 
   }
