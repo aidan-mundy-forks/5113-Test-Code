@@ -22,6 +22,10 @@ public class Network extends Subsystem {
     return nt.getTable("/visionProcessing").getEntry("error").getBoolean(true);
   }
 
+  public String getErrorMessage() {
+    return nt.getTable("/visionProcessing").getEntry("errorMessage").getString("Cant find the message!");
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
