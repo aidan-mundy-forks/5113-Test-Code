@@ -16,7 +16,9 @@ public class TestAuton extends Command {
       Robot.driveBase.stop();
       System.out.println(Robot.network.getErrorMessage());
     } else {
-      Robot.driveBase.driveCartesian(autonPStrafeSpeed(), autonPDriveSpeed(), autonPRotateSpeed());
+      double strafeSpeed = autonPStrafeSpeed();
+      double rotateSpeed = autonPRotateSpeed();
+      Robot.driveBase.driveCartesian(strafeSpeed, autonPDriveSpeed(strafeSpeed, rotateSpeed), rotateSpeed);
       System.out.println("Trying to rotate " + autonPRotateSpeed());
       System.out.println("Trying to strafe " + autonPStrafeSpeed());
     }
@@ -24,7 +26,7 @@ public class TestAuton extends Command {
   }
 
   private double autonPStrafeSpeed() {
-    double threshold = .92;
+    double threshold = .93;
     double target0Area;
     double target1Area;
 
@@ -53,29 +55,42 @@ public class TestAuton extends Command {
   }
 
   private double autonPStrafeSpeedMath(double ratio) {
-
-    double maxSpeed = .5;
-    double minSpeed = .18;
+    double threshold = .35; // NOTE: This is not the accuracy threshold, this is the RATIO threshold.
+    double maxSpeed = .6;
+    double minSpeed = .25;
 
     double speedDiff = maxSpeed - minSpeed;
+    double thresholdedTop = 1 - threshold;
 
-    return Math.abs(((ratio - 0.35) / .65) * speedDiff) + minSpeed;
+    return ((1 - (Math.abs(ratio - threshold) / thresholdedTop)) * speedDiff) + minSpeed;
   }
 
-  private double autonPDriveSpeed() {
+  private double autonPDriveSpeed(double strafeSpeed, double rotateSpeed) {
     double driveSpeed = -.25;
+    double movingDriveSpeed = -.05;
+    double rotatingThreshold = .1;
+    double strafingThreshold = .4;
 
     if (Robot.oi.getAutonForwardButton()) {
-      return driveSpeed;
+      if (rotateSpeed > rotatingThreshold && strafeSpeed > strafingThreshold) {
+        return movingDriveSpeed;
+      } else {
+        return driveSpeed;
+      }
     } else {
       return 0;
     }
   }
 
   private double autonPRotateSpeed() {
-    int threshold = 10;
-    double maxSpeed = .5;
+    int threshold = 13;
+    double maxSpeed = .6;
     double minSpeed = .12;
+    double minSpeedWhileDriving = .07;
+
+    if (Robot.oi.getAutonForwardButton()) {
+      minSpeed = minSpeedWhileDriving;
+    }
 
     double speedDiff = maxSpeed - minSpeed;
     double actualPosition = (Robot.network.getContourInfo(DataType.x, 0) + Robot.network.getContourInfo(DataType.x, 1)) / 2 - 480;
