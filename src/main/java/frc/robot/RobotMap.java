@@ -1,17 +1,18 @@
 package frc.robot;
 
 /**
- * The RobotMap is a list of bumeric or boolean variables used in any class. Any
- * port numbers, speed modifiers, axis or button ids, or anything else
- * modifiable should be always placed here. Constants should also typically be
+ * The RobotMap is a list of numeric or boolean variables used in any class. Any
+ * port numbers, speed modifiers, axis or button ids, or anything else user
+ * configurable should be always placed here. Constants should also typically be
  * placed in RobotMap in most situations where they are important to know and/or
  * shared between multiple classes, such as encoder counts.
  * This provides flexibility changing wiring, makes checking the wiring easier,
- * makes changing settings quicker and easier,and significantly reduces the
+ * makes changing settings quicker and easier, and significantly reduces the
  * number of magic numbers floating around.
  * For example to map the left and right motors, you could define the following
- * variables to use with your drivetrain subsystem. public static int leftMotor
- * = 1; public static int rightMotor = 2;
+ * variables to use with your drivetrain subsystem. 
+ * public static int leftMotor = 1;
+ * public static int rightMotor = 2;
  */
 public class RobotMap {
   // Drive Motors

@@ -48,11 +48,9 @@ public class Robot extends TimedRobot {
     sendToSmartDashboard = new SendToSmartDashboard();
     sendToSmartDashboard.start();
 
-    /*
-     * chooser.setDefaultOption("Default Auto", new ExampleCommand()); //
-     * chooser.addOption("My Auto", new MyAutoCommand());
-     * SmartDashboard.putData("Auto mode", chooser);
-     */
+    // chooser.setDefaultOption("Default Auto", new ExampleCommand()); //
+    // chooser.addOption("My Auto", new MyAutoCommand());
+    // SmartDashboard.putData("Auto mode", chooser);
   }
 
   /**
@@ -67,7 +65,7 @@ public class Robot extends TimedRobot {
     }
   }
 
-  /**
+  /*
    * This function is called once each time the robot enters Disabled mode. You
    * can use it to reset any subsystem information you want to clear when the
    * robot is disabled.
@@ -95,15 +93,13 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     autonomousCommand = chooser.getSelected();
 
-    // schedule the autonomous command (example)
+    // Start the autonomous command, and ignore if there isnt one.
     if (autonomousCommand != null) {
       autonomousCommand.start();
     }
   }
 
-  /**
-   * This function is called periodically during autonomous.
-   */
+  // This function is called periodically during autonomous.
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
@@ -111,33 +107,26 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
+    // This makes sure that the autonomous stops running when teleop starts running.
+    // If you want the autonomous to continue until interrupted by another command,
+    // remove this line or comment it out.
     if (autonomousCommand != null) {
       autonomousCommand.cancel();
     }
   }
 
-  /**
-   * This function is called periodically during operator control.
-   */
+  // This function is called periodically during operator control.
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
   }
 
-  /**
-   * This function is called once each time the robot enters Test mode.
-   */
+  // This function is called once each time the robot enters Test mode.
   @Override
   public void testInit() {
   }
 
-  /**
-   * This function is called periodically during test mode.
-   */
+  // This function is called periodically during test mode.
   @Override
   public void testPeriodic() {
   }
