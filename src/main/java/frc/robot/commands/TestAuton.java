@@ -30,7 +30,7 @@ public class TestAuton extends Command {
 
     /*
      * This is necessary because targets arent always located in a logical sort in the array
-     * and it was easier to to this than to actually follow heirarchy rules. ¯\_(ツ)_/¯
+     * and it was easier do this than to actually follow heirarchy rules. ¯\_(ツ)_/¯
      */
     if (Robot.network.getContourInfo(DataType.x, 0) < Robot.network.getContourInfo(DataType.x, 1)) {
       target0Area = Robot.network.getContourInfo(DataType.area, 0);

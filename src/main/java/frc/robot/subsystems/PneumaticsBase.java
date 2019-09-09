@@ -16,7 +16,7 @@ public class PneumaticsBase extends Subsystem {
   }
 
   public void disableCompressor() {
-    compressor.setClosedLoopControl(true);
+    compressor.setClosedLoopControl(false);
   }
 
   public void toggleCompressor() {

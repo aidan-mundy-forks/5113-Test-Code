@@ -14,7 +14,11 @@ public class Network extends Subsystem {
     if (index < 0 || index > 1) {
       return 0.0;
     } else {
-      return nt.getTable("/visionProcessing/targetInfo/contoursReport").getEntry(dataType.name()).getDoubleArray(new double[] { 0.0, 0.0 })[index];
+      return nt.getTable("/visionProcessing/targetInfo/contoursReport").getEntry(dataType.name())
+          .getDoubleArray(new double[] { 0.0, 0.0 })[index]; // While the "new" operation without a corresponding
+                                                             // delete() operation would be considered bad practice in
+                                                             // many scenarios and languages, Java has garbage
+                                                             // collection so this isnt really a problem.
     }
   }
 
@@ -28,7 +32,6 @@ public class Network extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    // This subsystem does not need a default command.
   }
 }

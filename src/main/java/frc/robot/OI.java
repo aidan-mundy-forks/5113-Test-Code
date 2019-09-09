@@ -19,12 +19,20 @@ public class OI {
   private final Joystick secondaryGamepad = new Joystick(1);
 
   public OI() {
-    final var compressorButton = new JoystickButton(mainGamepad, RobotMap.compressorButton);
+    /*
+     * Technically we should use .close() on all of these when they are no longer
+     * being used, but these are used until the robot reboots, so for sake of
+     * laziness, I am going to leave thewm as is.
+     */
+    final JoystickButton compressorButton = new JoystickButton(mainGamepad, RobotMap.compressorButton);
     final JoystickButton pivotToggleButton = new JoystickButton(secondaryGamepad, RobotMap.pivotToggleButton);
     final JoystickButton clampButton = new JoystickButton(secondaryGamepad, RobotMap.clampButton);
     final JoystickButton barButton = new JoystickButton(secondaryGamepad, RobotMap.barButton);
     final JoystickButton climbToggleButton = new JoystickButton(mainGamepad, RobotMap.climbToggleButton);
     final POVButton autonButton = new POVButton(mainGamepad, 0);
+    // Realistically we should either remove the implementations above and move to
+    // something more like CargoControl.java, or we should convert the cargo
+    // controlls to work with JoystickButton commands.
 
     compressorButton.whenPressed(new ToggleCompressor());
     pivotToggleButton.whenPressed(new ToggleCargoPivot());

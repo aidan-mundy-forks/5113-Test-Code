@@ -18,9 +18,11 @@ public class SendToSmartDashboard extends Command {
     SmartDashboard.putNumber("y Joystick", Robot.oi.getDriveY());
     SmartDashboard.putNumber("z Joystick", Robot.oi.getDriveZ());
     if (Robot.network.getContourInfo(DataType.area, 0) < Robot.network.getContourInfo(DataType.area, 1)) {
-      SmartDashboard.putNumber("ratio", Robot.network.getContourInfo(DataType.area, 0) / Robot.network.getContourInfo(DataType.area, 1));
+      SmartDashboard.putNumber("ratio",
+          Robot.network.getContourInfo(DataType.area, 0) / Robot.network.getContourInfo(DataType.area, 1));
     } else {
-      SmartDashboard.putNumber("ratio", Robot.network.getContourInfo(DataType.area, 1) / Robot.network.getContourInfo(DataType.area, 0));
+      SmartDashboard.putNumber("ratio",
+          Robot.network.getContourInfo(DataType.area, 1) / Robot.network.getContourInfo(DataType.area, 0));
     }
   }
 
@@ -28,5 +30,11 @@ public class SendToSmartDashboard extends Command {
   @Override
   protected boolean isFinished() {
     return false;
+  }
+
+  // This runs if the command is unexpectedly interrupted.
+  @Override
+  protected void interrupted() {
+    System.out.println("SendToSmartDashBoard was interrupted.");
   }
 }
